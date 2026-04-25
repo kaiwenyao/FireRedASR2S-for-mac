@@ -90,12 +90,12 @@ modelscope download --model xukaituo/FireRedPunc --local_dir ./pretrained_models
 modelscope download --model xukaituo/FireRedASR2-LLM --local_dir ./pretrained_models/FireRedASR2-LLM
 
 # Download via Hugging Face
-pip install -U "huggingface_hub[cli]"
-huggingface-cli download FireRedTeam/FireRedASR2-AED --local-dir ./pretrained_models/FireRedASR2-AED
-huggingface-cli download FireRedTeam/FireRedVAD --local-dir ./pretrained_models/FireRedVAD
-huggingface-cli download FireRedTeam/FireRedLID --local-dir ./pretrained_models/FireRedLID
-huggingface-cli download FireRedTeam/FireRedPunc --local-dir ./pretrained_models/FireRedPunc
-huggingface-cli download FireRedTeam/FireRedASR2-LLM --local-dir ./pretrained_models/FireRedASR2-LLM
+curl -LsSf https://hf.co/cli/install.sh | bash
+hf download FireRedTeam/FireRedASR2-AED --local-dir ./pretrained_models/FireRedASR2-AED
+hf download FireRedTeam/FireRedVAD --local-dir ./pretrained_models/FireRedVAD
+hf download FireRedTeam/FireRedLID --local-dir ./pretrained_models/FireRedLID
+hf download FireRedTeam/FireRedPunc --local-dir ./pretrained_models/FireRedPunc
+hf download FireRedTeam/FireRedASR2-LLM --local-dir ./pretrained_models/FireRedASR2-LLM
 ```
 
 4. Convert your audio to **16kHz 16-bit mono PCM** format if needed:
@@ -112,7 +112,8 @@ $ bash inference_asr_system.sh
 ### Command-line Usage
 ```bash
 $ fireredasr2s-cli --help
-$ fireredasr2s-cli --wav_paths "assets/hello_zh.wav" "assets/hello_en.wav" --outdir output
+$ fireredasr2s-cli --outdir output --wav_paths "assets/hello_zh.wav" "assets/hello_en.wav" 
+$ fireredasr2s-cli --outdir output --asr_type llm --asr_model_dir pretrained_models/FireRedASR2-LLM --wav_paths "assets/hello_zh.wav" "assets/hello_en.wav"
 $ cat output/result.jsonl 
 # {"uttid": "hello_zh", "text": "你好世界。", "sentences": [{"start_ms": 310, "end_ms": 1840, "text": "你好世界。", "asr_confidence": 0.875, "lang": "zh mandarin", "lang_confidence": 0.999}], "vad_segments_ms": [[310, 1840]], "dur_s": 2.32, "words": [{"start_ms": 490, "end_ms": 690, "text": "你"}, {"start_ms": 690, "end_ms": 1090, "text": "好"}, {"start_ms": 1090, "end_ms": 1330, "text": "世"}, {"start_ms": 1330, "end_ms": 1795, "text": "界"}], "wav_path": "assets/hello_zh.wav"}
 # {"uttid": "hello_en", "text": "Hello speech.", "sentences": [{"start_ms": 120, "end_ms": 1840, "text": "Hello speech.", "asr_confidence": 0.833, "lang": "en", "lang_confidence": 0.998}], "vad_segments_ms": [[120, 1840]], "dur_s": 2.24, "words": [{"start_ms": 340, "end_ms": 1020, "text": "hello"}, {"start_ms": 1020, "end_ms": 1666, "text": "speech"}], "wav_path": "assets/hello_en.wav"}

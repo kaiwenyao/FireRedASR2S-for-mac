@@ -1,4 +1,4 @@
-
+#!python
 # Copyright 2026 Xiaohongshu. (Author: Kaituo Xu, Kai Huang, Yan Jia, Junjie Chen, Wenpeng Li)
 
 import argparse
@@ -44,7 +44,7 @@ module_g.add_argument('--enable_punc', type=int, default=1, choices=[0, 1])
 asr_g = parser.add_argument_group("ASR Options")
 asr_g.add_argument('--asr_type', type=str, default="aed", choices=["aed", "llm"])
 asr_g.add_argument('--asr_model_dir', type=str, default="pretrained_models/FireRedASR2-AED")
-asr_g.add_argument('--asr_use_gpu', type=int, default=1)
+asr_g.add_argument('--asr_use_gpu', type=int, default=0)
 asr_g.add_argument('--asr_use_half', type=int, default=0)
 asr_g.add_argument("--asr_batch_size", type=int, default=1)
 # FireRedASR-AED
@@ -61,7 +61,7 @@ asr_g.add_argument("--elm_weight", type=float, default=0.0)
 
 vad_g = parser.add_argument_group("VAD Options")
 vad_g.add_argument('--vad_model_dir', type=str, default="pretrained_models/FireRedVAD/VAD")
-vad_g.add_argument('--vad_use_gpu', type=int, default=1)
+vad_g.add_argument('--vad_use_gpu', type=int, default=0)
 # Non-streaming VAD
 vad_g.add_argument("--vad_chunk_max_frame", type=int, default=30000)
 vad_g.add_argument("--smooth_window_size", type=int, default=5)
@@ -74,11 +74,11 @@ vad_g.add_argument("--extend_speech_frame", type=int, default=10)
 
 lid_g = parser.add_argument_group("LID Options")
 lid_g.add_argument('--lid_model_dir', type=str, default="pretrained_models/FireRedLID")
-lid_g.add_argument('--lid_use_gpu', type=int, default=1)
+lid_g.add_argument('--lid_use_gpu', type=int, default=0)
 
 punc_g = parser.add_argument_group("Punc Options")
 punc_g.add_argument('--punc_model_dir', type=str, default="pretrained_models/FireRedPunc")
-punc_g.add_argument('--punc_use_gpu', type=int, default=1)
+punc_g.add_argument('--punc_use_gpu', type=int, default=0)
 punc_g.add_argument("--punc_batch_size", type=int, default=1)
 punc_g.add_argument('--punc_with_timestamp', type=int, default=1)
 punc_g.add_argument('--punc_sentence_max_length', type=int, default=-1)

@@ -10,3 +10,4 @@ utt2event
 pretrained_models/
 *.swp
 *.swo
+.DS_Store
