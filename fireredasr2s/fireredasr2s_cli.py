@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 # Copyright 2026 Xiaohongshu. (Author: Kaituo Xu, Kai Huang, Yan Jia, Junjie Chen, Wenpeng Li)
 
